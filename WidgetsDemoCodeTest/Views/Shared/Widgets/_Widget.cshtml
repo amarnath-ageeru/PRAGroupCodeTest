@@ -1,0 +1,41 @@
+﻿@model  WidgetsDemoCodeTest.Models.IWidget
+
+<div class="widget">
+    <div class="@Model.ClassName">
+
+        <div class="header">
+            @Model.HeaderText
+        </div>
+        <div class="body">
+            @Html.Partial(string.Concat(new[] { "Widgets", "/", "_SubWidget" }), @Model.SubWidget)
+        </div>
+
+        <div class="footer">
+            $ @Model.BasePrice
+            @Html.Hidden("basePrice_"+Model.WidgetName, Model.BasePrice);
+        </div>
+        <div class="footer">
+            Select: @Html.CheckBox("chk_"+Model.WidgetName, Model.ItemSelected, new { id = "chk"+Model.WidgetName })
+        </div>
+
+        <div class="footer">
+            Quantity: @Html.TextBox("txt_"+Model.WidgetName, "", new {id="txt"+Model.WidgetName, style = "width: 30px; height: 10px;" })
+        </div>
+
+        <div class="footer">
+            <button name="button" title="Sale 10% Off" value="ActionOne" style="width: 200px; border: none; visibility: visible">
+                @if (@Model.DiscountIndicator == true)
+                {
+                    @Html.Label("Sale 10% Off", new { style = "width: auto; background-color: red; color:white" })
+                    @Html.Hidden("dis_"+Model.WidgetName, Model.Discount);
+                }
+                else
+                {
+                    @Html.Label("", new { style = "width: auto; height: auto; background-color: red; color:white" })
+                    @Html.Hidden("dis_" + Model.WidgetName, Model.Discount);
+                }
+@*<img src='~/Images/Discount.PNG' style="width: auto; height: 50px;" />*@
+            </button>
+        </div>
+    </div>
+</div>

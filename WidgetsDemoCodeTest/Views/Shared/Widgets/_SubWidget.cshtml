@@ -1,0 +1,17 @@
+﻿@model  WidgetsDemoCodeTest.Models.ISubWidget
+<div class="body">
+    <div>
+        <div style="float: left">
+            @Html.LabelFor(p => p.Topic, @Model.Topic)
+        </div>
+    </div>
+    <div>
+        <button name="button" value="ActionOne" class="button" style="width: 200px; border:none">
+            <img src='@Model.ImagePath' style="width:180px;height:170px;" />
+        </button>
+    </div>
+    <div style="clear: both">
+        @Model.Description
+    </div>
+</div>
+

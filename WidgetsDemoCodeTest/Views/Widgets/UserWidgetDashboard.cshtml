@@ -1,0 +1,47 @@
+﻿@model WidgetsDemoCodeTest.Models.WidgetBoard
+@{
+    ViewBag.Title = "UserWidgetDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="text-align:center">User Widget Dashboard</h2>
+@using (Html.BeginForm("CalculateTotalPrice", "Widgets", FormMethod.Post, new { style = "background-color: lightblue;display: inline-block;margin-left:10%;" }))
+{
+    <div style="/*vertical-align: middle; text-align: center;margin-left:10% !important*/">
+        <p>
+            @{        
+                @Html.Partial("Widgets/_WidgetContainer");
+            }
+        </p>
+    </div>
+
+     <div style="margin-right : 900px !important; margin-left: -1px !important;margin: 250px -50px 100px -200px">
+            Select State: @Html.DropDownList("ddlState", (IEnumerable<SelectListItem>)ViewBag.States, new { id = "ddlState" })
+            <input type="submit" value="Calculate" />
+        
+    </div>
+    
+    
+    <div style="margin-left : 40% !important; margin-top: -100px !important;">
+        <table style="border: solid 1px black !important">
+            <tr style="border: solid 1px black !important">
+                <th style="border: solid 1px black !important">Base Price</th>
+                <th style="border: solid 1px black !important">Discount</th>
+                <th style="border: solid 1px black !important">Sales Tax</th>
+                <th style="border: solid 1px black !important">Total Cost</th>
+            </tr>
+            <tr style="border: solid 1px black !important">
+                @*<td>@Html.Label((string)ViewBag.TotalBasePrice)</td>
+        <td>@Html.Label((string)ViewBag.TotalDiscountedPrice)</td>
+        <td>@Html.Label((string)ViewBag.TotalSalesTaxPrice)</td>
+        <td>@Html.Label((string)ViewBag.TotalPriceToBePaid)</td>*@
+
+                <td style="border: solid 1px black !important">@ViewBag.TotalBasePrice</td>
+                <td style="border: solid 1px black !important">@ViewBag.TotalDiscountedPrice</td>
+                <td style="border: solid 1px black !important">@ViewBag.TotalSalesTaxPrice</td>
+                <td style="border: solid 1px black !important">@ViewBag.TotalPriceToBePaid</td>
+            </tr>
+        </table>
+    </div>
+}
+
+
